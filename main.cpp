@@ -1,3 +1,17 @@
+/*
+ * ProximAlert
+ * 
+ * Autores:
+ *   - Giovanni Bardelli Darcourt
+ *   - Camila del Pilar Berrocal Falconi
+ *   - Maurice Brossard Fernández
+ *   - Gabriel Joaquin Moscoso Serin
+ *   - Marcela Verde Frech
+ * 
+ * Universidad de Lima - Facultad de Ingeniería
+ * Inteligencia Artificial Aplicada - Sección 318
+ * Febrero 2026
+ */
 // Definición de pines del sensor ultrasónico y LED
 const int trigPin = 7;  // Pin de disparo del HC-SR04
 const int echoPin = 6;  // Pin de eco del HC-SR04
