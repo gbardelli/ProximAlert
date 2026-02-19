@@ -1,0 +1,48 @@
+// Definición de pines del sensor ultrasónico y LED
+const int trigPin = 7;  // Pin de disparo del HC-SR04
+const int echoPin = 6;  // Pin de eco del HC-SR04
+const int ledRojo = 13; // LED de alerta (objeto cercano)
+
+long duracion;  // Tiempo de retorno del pulso en microsegundos
+float distancia; // Distancia calculada en centímetros
+
+void setup() {
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    pinMode(ledRojo, OUTPUT);
+    Serial.begin(9600); // Inicialización del monitor serial a 9600 baudios
+}
+
+void loop() {
+    // Asegurar pulso limpio antes de la medición
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+
+    // Enviar pulso ultrasónico de 10 microsegundos
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duracion = pulseIn(echoPin, HIGH); // Medir tiempo de retorno del eco
+
+    // Convertir tiempo a distancia: d = (t * velocidad_sonido) / 2
+    distancia = duracion * 0.034 / 2;
+
+    // Mostrar distancia en monitor serial
+    Serial.print("Distancia: ");
+    Serial.print(distancia);
+    Serial.println(" cm");
+
+    if (distancia > 0 && distancia < 10) {
+        // Alerta: objeto detectado dentro del umbral de 10 cm
+        digitalWrite(ledRojo, HIGH);
+    } else if (distancia >= 10) {
+        // Seguro: objeto fuera del umbral
+        digitalWrite(ledRojo, LOW);
+    } else {
+        // Lectura inválida: distancia igual o menor a cero
+        digitalWrite(ledRojo, LOW);
+    }
+
+    delay(200); // Espera 200ms entre mediciones
+}
