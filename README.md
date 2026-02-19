@@ -1,4 +1,4 @@
-## ProximAlert
+# ProximAlert
 
 ProximAlert es un detector de proximidad utilizando Arduino UNO R3 y sensor ultrasónico HC-SR04.
 Activa una alerta visual mediante un LED rojo cuando detecta un objeto a menos de 10 cm.
